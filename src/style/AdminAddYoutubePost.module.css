@@ -1,0 +1,55 @@
+.adminAddYoutubePostMain {
+    width: 85vw;
+    height: 100vh;
+}
+
+.blockInput {
+    
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    margin-top: 20px;
+    width: 70%;
+    padding: 10px;
+    border-radius: 20px;
+    height: 40px;
+    border: none;
+}
+
+.submitButton {
+    
+    left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    display: block;
+    border-radius: 20px;
+    height: 35px;
+    margin-top: 20px;
+    border: none;
+    background-color: green;
+    color: white;margin-bottom: 30px;
+
+}
+
+.adminNavigate {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    padding-inline: 10px;
+    border: none; 
+    padding: 10px;
+    transition: 0.2s ease-in-out;
+
+}
+.adminNavigate:hover {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    padding-inline: 10px;
+    border: none; 
+    padding: 10px;
+    transform: scale(1.05);
+
+}

@@ -1,0 +1,34 @@
+.footerMain {
+    background-color: black;
+    color: white;
+    /* left: 50%;
+    transform: translateX(-50%);
+    position: relative; */
+}
+
+.footerSub {
+    width: 85vw;
+}
+
+
+.footerAbout {
+    font-size: 20px;
+}
+
+
+@media(max-width: 767px) {
+    .footerSub {
+        width: 90vw;
+    }
+}
+
+.footerLinks {
+    color: white;
+    transition: 0.1s ease-in-out;
+    text-decoration: none;
+}
+
+.footerLinks:hover {
+    color: green;
+    text-decoration: none;
+}

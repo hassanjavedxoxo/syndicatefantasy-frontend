@@ -1,0 +1,135 @@
+.matchupMain {
+    background-color: hsla(0, 4.11%, 14.31%, 1);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85vw;
+}
+
+.searchPlayer {
+    border-radius: 30px;
+    width: 260px;
+    background-color: transparent;
+    border: solid white 2px;
+    padding: 7px;
+    color: white;
+}
+
+.rankingCont {
+    /* padding-inline: 80px; */
+    width: 100%;
+    overflow-x: auto !important;
+}
+
+.rankingCont table {
+    color: white;
+    min-height: 500px;
+}
+
+td {
+    text-align: center;
+    border: solid 1px white;
+    vertical-align: middle !important;
+}
+
+th {
+    text-align: center;
+    border: solid 1px white;
+    vertical-align: middle !important;
+}
+
+@media(max-width: 310px) {
+    .searchPlayer {
+        border-radius: 30px;
+        width: 240px;
+        background-color: transparent;
+        border: solid white 2px;
+        padding: 7px;
+    }
+}
+
+.buttonDiv {
+    position: relative;
+    width: 260px;
+    height: 30px;
+    margin-bottom: 30px;
+}
+
+.ppr {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: transparent;
+    border: solid green 2px;
+    color: white;
+}
+
+.halfPpr {
+    position: absolute;
+    width: 37%;
+    height: 100%;
+    left: 25%;
+    background-color: transparent;
+    border: solid green 2px;
+    border-right: none;border-left: none;
+    color: white;
+}
+.standard {
+    position: absolute;
+    width: 38%;
+    height: 100%;
+    left: 62%;
+    background-color: transparent;
+    border: solid green 2px;
+    color: white;
+}
+
+.pprClicked {
+    background-color: green;
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    border: solid green 2px;
+    color: white;
+}
+
+.halfPprClicked {
+    background-color: green;
+    position: absolute;
+    width: 37%;
+    height: 100%;
+    left: 25%;
+    border: solid green 2px;
+    border-right: none;border-left: none;
+    color: white;
+}
+.standardClicked {
+    background-color: green;
+    position: absolute;
+    width: 38%;
+    height: 100%;
+    left: 62%;
+    border: solid green 2px;
+    color: white;
+}
+
+
+.halfPpr:focus {
+    outline: none;
+}
+.halfPprClicked:focus {
+    outline: none;
+}
+
+.ppr:focus {
+    outline: none;
+}
+.pprClicked:focus {
+    outline: none;
+}
+
+.standard:focus {
+    outline: none;
+}
+.standardClicked:focus {
+    outline: none;
+}

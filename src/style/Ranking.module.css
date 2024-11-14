@@ -1,0 +1,71 @@
+.rankingMain {
+    background-color: hsla(0, 4.11%, 14.31%, 1);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85vw;
+}
+.rankingCont {
+    /* padding-inline: 80px; */
+    width: 100%;
+    overflow-x: auto !important;
+}
+
+.rankingCont table {
+    color: white;
+    min-height: 500px;
+}
+
+td {
+    text-align: center;
+    border: solid 1px white;
+    vertical-align: middle !important;
+}
+
+th {
+    text-align: center;
+    border: solid 1px white;
+}
+
+.positionButton {
+    border-radius: 20px;
+    padding: 5px;
+    width: 60px;
+    background-color: transparent;
+    border: white solid 2px;
+    color: white;
+}
+
+.positionButtonSelected {
+    border-radius: 20px;
+    padding: 5px;
+    width: 60px;
+    background-color: green;
+    border: white solid 2px;
+    color: white;
+}
+
+.positionButtonSelected:focus {
+    outline: none;
+}
+
+
+
+.searchPlayer {
+    border-radius: 30px;
+    width: 260px;
+    background-color: transparent;
+    border: solid white 2px;
+    padding: 7px;
+    color: white;
+}
+
+
+@media(max-width: 310px) {
+    .searchPlayer {
+        border-radius: 30px;
+        width: 240px;
+        background-color: transparent;
+        border: solid white 2px;
+        padding: 7px;
+    }
+}

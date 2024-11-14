@@ -1,0 +1,31 @@
+.adminLoginMain {
+    height: calc(100vh);
+    justify-content: center;
+    display: flex;
+}
+
+.loginContainer {
+    top: 45%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.loginContainer input {
+    display: block;
+    height: 40px;
+    width: 270px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    border: none;
+    color: black;
+    padding-inline: 10px;
+}
+
+.loginContainer button {
+    width: 100%;
+    background-color: green;
+    height: 40px;
+    width: 270px;
+    border-radius: 20px;
+    border: none;
+}

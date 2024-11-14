@@ -1,0 +1,380 @@
+.navMain {
+    display: flex;
+    background-color: hsla(0, 4.11%, 14.31%, 1);
+    color: white;
+}
+
+.logo {
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    padding-left: 25px;
+    font-size: xx-large;
+}
+
+.first {
+    display: flex;
+    width: 40%;
+    /* border: solid white 1px; */
+    justify-content: start;
+}
+
+.second {
+    width: 60%;
+    display: flex;
+    /* border: solid white 1px; */
+    justify-content: end;
+    align-items: center;
+}
+
+
+.tradeLarge {
+    position: relative;
+}
+
+.tradeContainer {
+    display: none;
+    width: 250px;
+    position: absolute;
+    left: 10px;
+    top: 10;
+    color: white;
+}
+
+.tradeContainerOpen {
+    /* display: none; */
+    width: 250px;
+    position: absolute;
+    left: 10px;
+    top: 32px;
+    color: white;
+    z-index: 10;
+    background-color: black;
+    width: 190%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+
+
+.rankingLarge {
+    position: relative;
+}
+
+.rankingContainer {
+    display: none;
+    width: 250px;
+    position: absolute;
+    left: 10px;
+    top: 10;
+    color: white;
+    z-index: 10;
+}
+
+.rankingContainerOpen {
+    width: 250px;
+    position: absolute;
+    left: 10px;
+    top: 32px;
+    color: white;
+    z-index: 10;
+    background-color: black;
+    width: 165%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 10px;
+}
+
+.linkLarge {
+    color: white;
+    text-decoration: none;
+    transition: 0.1s ease-in-out;
+}
+
+.linkLarge:hover {
+    color: green;
+    text-decoration: none;
+}
+
+.link {
+    margin-inline: 25px;
+    color: white;
+    transition: 0.1s ease-in-out;
+}
+.link:hover {
+    margin-inline: 25px;
+    color: green;
+    text-decoration: none;
+}
+.navSmall {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    width: 0%;
+    transition: 0.1s ease-in-out;
+}
+
+.menuClose {
+    position: absolute;
+    top: 29px;
+    font-size: 30px;
+    left: 25px;
+}
+
+.navRankingSmall {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    width: 0%;
+    transition: 0.1s ease-in-out;
+}
+
+.navTradeSmall {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    width: 0%;
+    transition: 0.1s ease-in-out;
+}
+
+.navSmallSub {}
+
+.linkSmall {
+    width: 100%;
+    display: block;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+@media(max-width: 1056px) {
+    .second {
+        display: none;
+    }
+
+    .navSmall {
+        display: flex;
+    }
+
+    .first {
+        width: 100%;
+    }
+}
+
+@media(min-width: 1057px) {
+    .second {
+        display: flex;
+    }
+
+    .navSmall {
+        display: none;
+    }
+
+    .menuSmallButton1 {
+        display: none;
+    }
+    .menuSmallButton2 {
+        display: none;
+    }
+}
+
+.menuSmallButton {
+    position: absolute;
+    /* right: 25px; */
+    padding: 0;
+    top: 0;
+}
+
+.menuSmallButton1 {
+    font-size: 35px;
+    position: fixed;
+    right: 25px;
+    top: 20px;
+    transition: 0.2s ease-in-out;
+    z-index: 40;
+}
+
+.menuSmallButton2 {
+    top: 40px;
+    font-size: 35px;
+    position: fixed;
+    right: 25px;
+    transition: 0.2s ease-in-out;
+    z-index: 40;
+}
+
+.menuSmallButton1Open {
+    font-size: 35px;
+    position: fixed;
+    right: 25px;
+    top: 20px;
+    transform: rotate(30deg);
+    z-index: 40;
+}
+
+.menuSmallButton2Open {
+    top: 40px;
+    font-size: 35px;
+    position: fixed;
+    right: 25px;
+    transform: rotate(30deg);
+    z-index: 40;
+}
+
+.navSmallOpen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    transition: 0.1s ease-in-out;
+    width: 100%;
+}
+
+.navRankingSmallOpen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    transition: 0.1s ease-in-out;
+    width: 100%;
+}
+.navTradeSmallOpen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: black;
+    z-index: 60;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    transition: 0.1s ease-in-out;
+    width: 100%;
+}
+@media(max-width: 499px) {
+    .logo {
+        font-size: 26px;
+    }
+
+    .menuSmallButton2 {
+        top: 34px;
+    }
+
+    .menuSmallButton2Open {
+        top: 34px;
+    }
+}
+
+@media(max-width: 369px) {
+    .logo {
+        font-size: 22px;
+    }
+
+    .menuSmallButton1 {
+        top: 16px;
+    }
+
+    .menuSmallButton2 {
+        top: 28px;
+    }
+
+    .menuSmallButton2Open {
+        top: 28px;
+    }
+
+    .menuSmallButton1Open {
+        top: 16px;
+    }
+}
+
+@media(max-width: 363px) {
+    .logo {
+        font-size: 22px;
+    }
+
+    .menuSmallButton1 {
+        top: 17px;
+    }
+
+    .menuSmallButton2 {
+        top: 29px;
+    }
+
+    .menuSmallButton1Open {
+        top: 17px;
+    }
+
+    .menuSmallButton2Open {
+        top: 29px;
+    }
+}
+
+
+
+
+@media(max-width: 339px) {
+    .logo {
+        font-size: 18px;
+    }
+
+    .menuSmallButton1 {
+        top: 17px;
+        font-size: 30px;
+    }
+
+    .menuSmallButton2 {
+        top: 27px;
+        font-size: 30px;
+    }
+
+    .menuSmallButton1Open {
+        top: 17px;
+        font-size: 30px;
+    }
+
+    .menuSmallButton2Open {
+        top: 27px;
+        font-size: 30px;
+    }
+}
+
+@media(max-width: 299px) {
+    .logo {
+        padding-left: 15px;
+    }
+}

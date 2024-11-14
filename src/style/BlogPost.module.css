@@ -1,0 +1,38 @@
+.blogImage {
+    width: 100%;
+}
+
+.blogImageCont {
+    /* padding: 20px; */
+}
+
+.blogPostMain {
+    cursor: pointer;
+    /* width: 85vw; */
+}
+
+.blogPostMainForHome {
+    cursor: pointer;
+    width: 85vw;
+}
+
+.deleteButton {
+    width: 200px;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+    border: none;
+}
+@media (max-width: 767px) {
+    .blogPostTextCont {
+        padding-inline: 0px !important;
+    }    
+    .blogImageCont {
+        padding-inline: 0px !important;
+    }
+
+    .blogPostMainForHome {
+        cursor: pointer;
+        width: 90vw;
+    }
+}

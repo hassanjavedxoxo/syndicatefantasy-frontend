@@ -1,0 +1,106 @@
+.matchupMain {
+    background-color: hsla(0, 4.11%, 14.31%, 1);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85vw;
+}
+
+.searchPlayer {
+    border-radius: 30px;
+    width: 260px;
+    background-color: transparent;
+    border: solid white 2px;
+    padding: 7px;
+    color: white;
+}
+
+.rankingCont {
+    /* padding-inline: 80px; */
+    width: 100%;
+    overflow-x: auto !important;
+}
+
+.rankingCont table {
+    color: white;
+    min-height: 500px;
+}
+
+td {
+    text-align: center;
+    border: solid 1px white;
+    vertical-align: middle !important;
+}
+
+th {
+    text-align: center;
+    border: solid 1px white;
+}
+
+@media(max-width: 310px) {
+    .searchPlayer {
+        border-radius: 30px;
+        width: 240px;
+        background-color: transparent;
+        border: solid white 2px;
+        padding: 7px;
+    }
+}
+
+.buttonDiv {
+    position: relative;
+    width: 200px;
+    height: 30px;
+}
+
+.dynasty {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    border: solid green 2px;
+    color: white;
+}
+
+.redraft {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 50%;
+    background-color: transparent;
+    border: solid green 2px;
+    color: white;
+}
+
+.dynastyClicked {
+    background-color: green;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border: solid green 2px;
+    color: white;
+}
+.redraftClicked {
+    background-color: green;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 50%;
+    border: solid green 2px;
+    color: white;
+}
+
+
+.redraftClicked:focus {
+    outline: none;
+}
+.redraft:focus {
+    outline: none;
+}
+
+.dynasty:focus {
+    outline: none;
+}
+
+.dynastyClicked:focus {
+    outline: none;
+}

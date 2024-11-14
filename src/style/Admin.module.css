@@ -1,0 +1,42 @@
+.adminMain {
+    width: 85vw;
+    color: white;
+}
+
+.adminNavigate {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    padding-inline: 10px;
+    border: none; 
+    padding: 10px;
+    transition: 0.2s ease-in-out;
+
+}
+.adminNavigate:hover {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    padding-inline: 10px;
+    border: none; 
+    padding: 10px;
+    transform: scale(1.05);
+
+}
+
+.homePosts {
+    width: 100%;
+    /* border: solid white 1px; */
+}
+
+
+
+@media(max-width: 767px) {
+    .homePosts {
+        width: 100%;
+        /* border: solid white 1px; */
+    }
+    .adminBlogCont {
+        padding: 0;
+    }
+}
