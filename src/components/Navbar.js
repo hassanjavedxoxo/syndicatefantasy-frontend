@@ -19,9 +19,9 @@ function Navbar() {
                 <div className={style.second}>
                     <Link className={`${style.link}`} to={'/'}>POSTS</Link>
 
+                    <Link className={`${style.link}`} to={'/myleague'}>MY LEAGUES</Link>
                     <div className={`${style.rankingLarge}`}>
 
-                    <Link className={`${style.link}`} to={'/myleague'}>MY LEAGUES</Link>
 
                     <Link className={`${style.link}`} onClick={() => {setNavRankingLargeOpen(!navRankingLargeOpen); setNavTradeLargeOpen(false)}}>RANKINGS <i className="fa-solid fa-chevron-down"></i></Link>
 

@@ -136,7 +136,7 @@ function MyLeague() {
             <h5 className='ml-3'>Leagues</h5>
           </div>
           <div className="col-2 p-0" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <i style={{ color: 'white' }} className="fa-solid fa-circle-plus"></i>
+            <i onClick={() => navigate('/leagueimport')} style={{ color: 'white' }} className="fa-solid fa-circle-plus"></i>
           </div>
         </div>
         {
