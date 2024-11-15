@@ -13,6 +13,8 @@ import StartAndSit from "./screens/StartAndSit";
 import Projection from "./screens/Projection";
 import PastProduction from "./screens/PastProduction";
 import BettingData from "./screens/BettingData";
+import LeagueImport from "./screens/LeagueImport";
+import MyLeague from "./screens/MyLeague";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
         <Route path="/projection" element={<Projection/>} />
         <Route path="/pastproduction" element={<PastProduction/>} />
         <Route path="/bettingdata" element={<BettingData/>} />
+        <Route path="/leagueimport" element={<LeagueImport/>} />
+        <Route path="/myleague" element={<MyLeague/>} />
       </Routes>
     </BrowserRouter>
   );

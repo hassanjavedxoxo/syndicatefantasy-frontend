@@ -1,0 +1,46 @@
+.leagueImportMain {
+    background-color: hsla(0, 4.11%, 14.31%, 1);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85vw;
+}
+
+.platformSelect {
+    background-color: transparent;
+    border: none;
+}
+
+.platformSelect img {
+    width: 50px;
+    height: 50px;
+    border: 10px;
+}
+
+.leagueIdInput {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    display: block;
+    border: solid 2px white;
+    background-color: transparent;
+    width: 270px;
+    height: 40px;
+    margin-top: 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.loginButton {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    width: 120px;
+    margin-top: 30px;
+    background-color: green;
+    color: white;
+    border: none;
+    margin-bottom: 30px;
+    padding: 6px;
+    border-radius: 5px;
+}
