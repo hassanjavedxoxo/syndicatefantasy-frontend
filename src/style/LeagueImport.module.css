@@ -29,6 +29,21 @@
     padding: 10px;
     border-radius: 5px;
 }
+@media(max-width: 400px) {
+    .leagueIdInput {
+        left: 50%;
+        transform: translateX(-50%);
+        position: relative;
+        display: block;
+        border: solid 2px white;
+        background-color: transparent;
+        width: 100%;
+        height: 40px;
+        margin-top: 30px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+}
 
 
 .loginButton {

@@ -19,6 +19,12 @@ function Footer() {
                             <Link className={style.footerLinks} to={'/'}>Blog</Link>
                         </div>
                         <div className="col-auto py-2">
+                            <Link className={style.footerLinks} to={'/bettingdata'}>League Import</Link>
+                        </div>
+                        <div className="col-auto py-2">
+                            <Link className={style.footerLinks} to={'/bettingdata'}>My Leagues</Link>
+                        </div>
+                        <div className="col-auto py-2">
                             <Link className={style.footerLinks} to={'/ranking/dynasty-ranking'}>Dynasty Ranking</Link>
                         </div>
                         <div className="col-auto py-2">

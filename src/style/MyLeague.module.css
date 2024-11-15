@@ -1,0 +1,97 @@
+.myLeagueMain {
+    background-color: hsla(0, 4.11%, 14.31%, 1);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85vw;
+    /* height: 100vh; */
+}
+
+
+.sideBar {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Initially, the sidebar is hidden off-screen */
+    width: 300px;
+    height: 100%;
+    background-color: black;
+    z-index: 10;
+    transition: left 0.3s ease-in-out; /* Smooth transition when opening or closing */
+  }
+  
+  .sideBarOpen {
+    left: 0; /* When the sidebar is open, it slides in */
+  }
+
+.sideBar h5 {
+    color: white;
+    margin: 0px;
+}
+
+.league {
+    margin-top: 20px;
+    background-color: rgb(53, 54, 53);
+    width: 90%;
+    height: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 5px;
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.league h5 {
+    transition: 0.1s ease-in-out;
+    cursor: pointer;
+}
+.league:hover h5 {
+    color: green;
+}
+
+
+
+.addLeague {
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.openCloseSidebar {
+    background-color: black;
+    width: 30px;
+    height: 60px;
+    position: fixed; /* Make it independent of the sidebar */
+    left: 0; /* Align it to the left of the screen */
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 11; /* Ensure it's above the sidebar */
+    color: white;
+    cursor: pointer;
+    transition: width 0.6s ease-in-out; /* Smooth transition */
+}
+.openCloseSidebarOpen {
+    left: 300px !important;
+}
+.openCloseSidebar i {
+    color: white;
+    font-size: 16px;
+}
+  
+  
+
+  
+  
+  
+
+  .teamCont {
+    /* border: solid white 1px; */
+    /* border-radius: 10px; */
+    /* padding: 10px; */
+    border-bottom: solid 2px white;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+  }

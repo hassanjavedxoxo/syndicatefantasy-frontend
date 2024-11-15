@@ -21,6 +21,8 @@ function Navbar() {
 
                     <div className={`${style.rankingLarge}`}>
 
+                    <Link className={`${style.link}`} to={'/myleague'}>MY LEAGUES</Link>
+
                     <Link className={`${style.link}`} onClick={() => {setNavRankingLargeOpen(!navRankingLargeOpen); setNavTradeLargeOpen(false)}}>RANKINGS <i className="fa-solid fa-chevron-down"></i></Link>
 
                     {/* This will show when click on ranking */}
