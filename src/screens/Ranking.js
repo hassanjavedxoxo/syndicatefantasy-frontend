@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import style from '../style/Ranking.module.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
@@ -62,6 +62,8 @@ function Ranking() {
         );
     };
 
+    const navigate = useNavigate();
+
     return (
         <>
         {loading ? <Loader/> : null}
@@ -76,6 +78,31 @@ function Ranking() {
                     value={searchQuery} // Bind the input value to searchQuery
                     onChange={handleSearchChange} // Handle input change
                 />
+                <div className="row mt-4 mb-2" style={{ width: '100%' }}>
+                    <div className="col-auto my-3">
+                        <button style={{width:'auto'}} onClick={() => navigate('/ranking/dynasty-ranking')}
+                            className={category === 'dynasty-ranking' ? style.positionButtonSelected : style.positionButton}
+                        >
+                            DYNASTY RANKINGS
+                        </button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button style={{width:'auto'}} onClick={() => navigate('/ranking/dynasty-rookie-ranking')}
+                            className={category === 'dynasty-rookie-ranking' ? style.positionButtonSelected : style.positionButton}
+                        >
+                            DYNASTY ROOKIE RANKINGS
+                        </button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button style={{width:'auto'}} onClick={() => navigate('/ranking/redraft-ranking')}
+                            className={category === 'redraft-ranking' ? style.positionButtonSelected : style.positionButton}
+                        >
+                            REDRAFT RANKINGS
+                        </button>
+                    </div>
+                </div>
+
+
                 <div className="row mt-4 mb-2" style={{ width: '100%' }}>
                     <div className="col-auto my-3">
                         <button
