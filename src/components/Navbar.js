@@ -62,6 +62,7 @@ function Navbar() {
                         <Link className={`${style.linkSmall}`} onClick={() => setNavTradeOpen(!navTradeOpen)}>TOOLS</Link>
                         <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/matchup'}>MATCH UP</Link>
                         <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/ourteam'}>OUR TEAM</Link>
+                        <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/myleague'}>MY LEAGUES</Link>
                     </div>
                 </div>
 

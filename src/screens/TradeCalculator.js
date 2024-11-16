@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import style from '../style/TradeCalculator.module.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
@@ -29,11 +29,14 @@ function TradeCalculator() {
                 let endpoint;
                 if (category === 'KeepTradeCut') {
                     endpoint = 'webscrap/ktc';
+                } else if (category === 'DynastyProcess') {
+                    endpoint = 'webscrap/dynastyprocess'
                 }
 
                 if (endpoint) {
                     const response = await axios.get(`http://localhost:5000/api/${endpoint}`);
                     setData(response.data);
+                    console.log(response.data);
 
                 }
             } catch (error) {
@@ -88,7 +91,7 @@ function TradeCalculator() {
 
 
         isSuperflex ? setTeamOnePlayerValue(prev => prev + item.superflexValue)
-        : setTeamOnePlayerValue(prev => prev + item.value);
+            : setTeamOnePlayerValue(prev => prev + item.value);
     }
 
 
@@ -98,7 +101,7 @@ function TradeCalculator() {
         setTeam2SearchTerm('')
         setTeam2FilteredData([])
         isSuperflex ? setTeamTwoPlayerValue(prev => prev + item.superflexValue)
-        : setTeamTwoPlayerValue(prev => prev + item.value);
+            : setTeamTwoPlayerValue(prev => prev + item.value);
     }
 
     useEffect(() => {
@@ -136,6 +139,13 @@ function TradeCalculator() {
     };
 
 
+    const navigate = useNavigate();
+    const changePlatform = (e) => {
+        navigate('/trade/' + e.target.value);
+
+
+    }
+
 
 
     return (
@@ -144,10 +154,15 @@ function TradeCalculator() {
             <Navbar />
             <div className={`${style.tradeMain} container-fluid p-0`}>
                 <h2 className="mb-4">{category} CALCULATOR</h2>
-                <h3>Superflex <span><label class={`${style.switch}`}>
+                {category === 'DynastyProcess' ? null : <h3>Superflex <span><label class={`${style.switch}`}>
                     <input type="checkbox" onClick={() => setIsSupeflex(!isSuperflex)} />
                     <span class={`${style.slider} ${style.round}`}></span>
-                </label></span></h3>
+                </label></span></h3>}
+
+                <select onChange={(e) => changePlatform(e)} name="" id="" className={style.platformSelect}>
+                    <option value="KeepTradeCut">KeepTradeCut</option>
+                    <option value="DynastyProcess">Dynasty Process</option>
+                </select>
                 <div className="row">
                     {/* Team 1 */}
                     <div className="col-md-6">
