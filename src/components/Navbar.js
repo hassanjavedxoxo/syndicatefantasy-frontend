@@ -20,19 +20,9 @@ function Navbar() {
                     <Link className={`${style.link}`} to={'/'}>POSTS</Link>
 
                     <Link className={`${style.link}`} to={'/myleague'}>MY LEAGUES</Link>
-                    <div className={`${style.rankingLarge}`}>
 
 
-                    <Link className={`${style.link}`} onClick={() => {setNavRankingLargeOpen(!navRankingLargeOpen); setNavTradeLargeOpen(false)}}>RANKINGS <i className="fa-solid fa-chevron-down"></i></Link>
-
-                    {/* This will show when click on ranking */}
-
-                    <div className={`${navRankingLargeOpen ? style.rankingContainerOpen : style.rankingContainer} container-fluid`}>
-                        <Link className={style.linkLarge} to={'/ranking/dynasty-ranking'}>DYNASTY RANKING</Link><br /><br />
-                        <Link className={style.linkLarge} to={'/ranking/dynasty-rookie-ranking'}>DYNASTY ROOKIE RANKING</Link><br /><br />
-                        <Link className={style.linkLarge} to={'/ranking/redraft-ranking'}>REDRAFT RANKING</Link>
-                    </div>
-                    </div>
+                    <Link className={`${style.link}`} to={'/ranking/dynasty-ranking'}>RANKINGS</Link>
 
                     <div className={`${style.tradeLarge}`}>
 
@@ -58,11 +48,11 @@ function Navbar() {
                 <div className={`${navOpen ? style.navSmallOpen : style.navSmall}`}>
                     <div className={`${style.navSmallSub}`}>
                         <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/'}>POSTS</Link>
-                        <Link className={`${style.linkSmall}`} onClick={() => setNavRankingOpen(!navRankingOpen)}>RANKINGS</Link>
+                        <Link onClick={() => { setNavOpen(!navOpen) }} to={'/myleague'} className={`${style.linkSmall}`}>MY LEAGUES</Link>
+                        <Link onClick={() => { setNavOpen(!navOpen) }} to={'/ranking/dynasty-ranking'} className={`${style.linkSmall}`}>RANKINGS</Link>
                         <Link className={`${style.linkSmall}`} onClick={() => setNavTradeOpen(!navTradeOpen)}>TOOLS</Link>
-                        <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/matchup'}>MATCH UP</Link>
+                        
                         <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/ourteam'}>OUR TEAM</Link>
-                        <Link onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`} to={'/myleague'}>MY LEAGUES</Link>
                     </div>
                 </div>
 

@@ -26,6 +26,10 @@ function Ranking() {
                     endpoint = isSuperflexChecked ? 'dynasty-rookie-ranking/superflex' : 'dynasty-rookie-ranking/all';
                 } else if (category === 'redraft-ranking') {
                     endpoint = isSuperflexChecked ? 'redraft-ranking/superflex' : 'redraft-ranking/all';
+                } else if (category === 'KeepTradeCut') {
+                    endpoint = 'webscrap/ktc'
+                } else if (category === 'DynastyProcess') {
+                    endpoint = 'webscrap/DynastyProcess'
                 }
 
                 if (endpoint) {
@@ -66,7 +70,7 @@ function Ranking() {
 
     return (
         <>
-        {loading ? <Loader/> : null}
+            {loading ? <Loader /> : null}
             <Navbar />
             <div className={`${style.rankingMain} container-fluid p-0`}>
 
@@ -80,24 +84,38 @@ function Ranking() {
                 />
                 <div className="row mt-4 mb-2" style={{ width: '100%' }}>
                     <div className="col-auto my-3">
-                        <button style={{width:'auto'}} onClick={() => navigate('/ranking/dynasty-ranking')}
+                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/dynasty-ranking')}
                             className={category === 'dynasty-ranking' ? style.positionButtonSelected : style.positionButton}
                         >
                             DYNASTY RANKINGS
                         </button>
                     </div>
                     <div className="col-auto my-3">
-                        <button style={{width:'auto'}} onClick={() => navigate('/ranking/dynasty-rookie-ranking')}
+                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/dynasty-rookie-ranking')}
                             className={category === 'dynasty-rookie-ranking' ? style.positionButtonSelected : style.positionButton}
                         >
                             DYNASTY ROOKIE RANKINGS
                         </button>
                     </div>
                     <div className="col-auto my-3">
-                        <button style={{width:'auto'}} onClick={() => navigate('/ranking/redraft-ranking')}
+                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/redraft-ranking')}
                             className={category === 'redraft-ranking' ? style.positionButtonSelected : style.positionButton}
                         >
                             REDRAFT RANKINGS
+                        </button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/KeepTradeCut')}
+                            className={category === 'KeepTradeCut' ? style.positionButtonSelected : style.positionButton}
+                        >
+                            KeepTradeCut
+                        </button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/DynastyProcess')}
+                            className={category === 'DynastyProcess' ? style.positionButtonSelected : style.positionButton}
+                        >
+                            Dynasty Process
                         </button>
                     </div>
                 </div>
@@ -159,7 +177,9 @@ function Ranking() {
                             TE
                         </button>
                     </div>
-                    <div className="col-auto my-3">
+                    {
+                        category === 'KeepTradeCut' || category === 'DynastyProcess' ? null :
+                        <div className="col-auto my-3">
                         <p className={style.positionButton} style={{ width: 'auto', border: 'solid transparent 2px' }}>
                             SUPERFLEX
                             <span className='pl-2'>
@@ -171,6 +191,8 @@ function Ranking() {
                             </span>
                         </p>
                     </div>
+                    }
+                    
                 </div>
 
                 <div className={`${style.rankingCont}`}>
@@ -178,12 +200,24 @@ function Ranking() {
                     <table className={`table ${style.rankingTable}`}>
                         <thead>
                             <tr>
-                                <th scope="col">RANK</th>
+                                <th scope="col">{category === 'KeepTradeCut' || category === 'DynastyProcess' ? 'SERIAL NO.' : 'RANK'}</th>
                                 <th scope="col">NAME</th>
-                                <th scope="col">TEAM</th>
-                                <th scope="col">POSITION</th>
-                                <th scope="col">AGE</th>
+                                {
+                                    category === 'DynastyProcess' ? null :
+                                        <>
+                                            <th scope="col">TEAM</th>
+                                            <th scope="col">POSITION</th>
+                                        </>
+                                }
+                                {
+                                    category === 'DynastyProcess' ? null :
+                                        <th scope="col">AGE</th>
+                                }
                                 <th scope="col">VALUE</th>
+                                {
+                                    category === 'KeepTradeCut' ? <th scope="col">SUPERFLEX VALUE</th> : null
+                                }
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -194,10 +228,21 @@ function Ranking() {
                                     <tr key={value.id || index}>
                                         <td>{value.rank || index + 1}</td>
                                         <td>{value.name}</td>
-                                        <td>{value.team}</td>
-                                        <td>{value.position}</td>
-                                        <td>{value.maybeAge}</td>
+                                        {
+                                            category === 'DynastyProcess' ? null :
+                                            <>
+                                                <td>{value.team}</td>
+                                                <td>{value.position}</td>
+                                            </>
+                                        }
+                                        {
+                                            category === 'DynastyProcess' ? null :
+                                                <td>{category === 'KeepTradeCut' ? value.age : value.maybeAge}</td>
+                                        }
                                         <td>{value.value}</td>
+                                        {
+                                            category === 'KeepTradeCut' ? <td>{value.superflexValue}</td> : null
+                                        }
                                     </tr>
                                 ))
                             )}

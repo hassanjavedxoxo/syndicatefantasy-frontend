@@ -150,6 +150,14 @@ function TradeDatabase() {
             {loader ? <Loader /> : null} {/* Show loader when data is being fetched */}
             <Navbar />
             <div className={`${style.tradeDatabaseMain} container-fluid`}>
+                
+                <h4 className='mt-4 mb-3' style={{color:'green'}}>Keys:</h4>
+                <p><span style={{color:'green'}}>QB:</span> This setting specifies how many quarterbacks are required to be started in the lineup each week. For example, some leagues may require 2 quarterbacks to be in the starting lineup.</p>
+                <p><span style={{color:'green'}}>TM:</span> This setting might refer to specific rules or restrictions related to teams in the league. It could indicate a particular team format or configuration used for rosters or lineup settings.</p>
+                <p><span style={{color:'green'}}>PPR:</span> In leagues with PPR, players earn points for each reception they make. This scoring system increases the value of players who catch passes, such as wide receivers and running backs.</p>
+                <p><span style={{color:'green'}}>TEP:</span> In leagues with a Tight End Premium, tight ends are awarded additional points for each reception they make. This format makes tight ends more valuable compared to other positions.</p>
+                <p className='mb-5'><span style={{color:'green'}}>START:</span> This setting defines how many players a team must start in their lineup each week. For example, a team may be required to start 9 players from their roster during each match.</p>
+
                 <div className={`${style.buttonDiv}`}>
                     <button className={isDynasty ? style.dynastyClicked : style.dynasty} onClick={() => changeCategory('dynasty')}>Dynasty</button>
                     <button className={isDynasty ? style.redraft : style.redraftClicked} onClick={() => changeCategory('redraft')}>Redraft</button>
@@ -205,7 +213,7 @@ function TradeDatabase() {
                         <button onClick={() => handleSearch()} className={style.dbSearch}>Search</button> {/* Search button */}
                     </div>
                 </div>
-
+                
                 <div className={`${style.dbResult} container-fluid p-0 my-5`}>
                     <table style={{ width: '100%' }}>
                         <thead>
