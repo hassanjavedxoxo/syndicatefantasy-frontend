@@ -12,6 +12,7 @@ function Admin() {
     const [loader, setLoader] = useState(false);
     const [blogData, setBlogData] = useState([]);
     const [youtubeData, setYoutubeData] = useState([]);
+    const [refreshApiCall, setRefreshApiCall] = useState(0);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,7 +36,7 @@ function Admin() {
             .finally(() => {
                 setLoader(false); // Make sure to set loader to false even if there is an error
             });
-    }, []);
+    }, [refreshApiCall]);
 
     const goToAddBlogPage = () => navigate('/adminaddblog');
     const goToAddYoutubePage = () => navigate('/adminaddyoutubepost');
@@ -60,7 +61,7 @@ function Admin() {
                             <div key={blog._id} className={`col-12 mb-3 ${style.adminBlogCont}`}>
                                 <div>
                                     
-                                    <BlogPost heading={blog.heading} id={blog._id} uploaded={blog.updatedAt} data={JSON.parse(blog.data)} image={blog.image}/>
+                                    <BlogPost setRefreshApiCall={setRefreshApiCall} heading={blog.heading} id={blog._id} uploaded={blog.updatedAt} data={JSON.parse(blog.data)} image={blog.image}/>
                                 </div>
                             </div>
                         ))}
@@ -71,6 +72,7 @@ function Admin() {
                     <div className="row mt-5 mb-5">
                         {youtubeData.map((value, index) => (
                             <YoutubePost 
+                            setRefreshApiCall={setRefreshApiCall}
                                 key={value._id}
                                 videoLink={value.videoLink} 
                                 title={value.heading} 

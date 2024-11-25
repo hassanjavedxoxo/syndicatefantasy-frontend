@@ -8,7 +8,8 @@ function BlogPost(props) {
   const handleDelete = () => {
     axios.delete(`http://localhost:5000/api/blogs/${props.id}`)
       .then(() => {
-        alert('BLOG DELETED')
+        alert('BLOG DELETED');
+        props.setRefreshApiCall(prev => prev + 1);
       }).catch((err) => {
         alert('ERROR OCCURED');
         console.log('Error:- ' + err);

@@ -6,6 +6,7 @@ function YoutubePost(props) {
     axios.delete(`http://localhost:5000/api/youtube/${props.id}`)
     .then(() => {
       alert('POST DELETED')
+      props.setRefreshApiCall(prev => prev + 1);
     }).catch((err) => {
       alert('ERROR OCCURED');
       console.log('Error:- ' + err);
