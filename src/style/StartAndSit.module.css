@@ -27,6 +27,10 @@
 
 }
 
+.playerCard input:focus {
+    outline: none;
+}
+
 .playerName {
     text-align: center;
     background-color: green;
