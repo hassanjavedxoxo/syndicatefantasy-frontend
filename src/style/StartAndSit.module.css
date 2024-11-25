@@ -1,106 +1,64 @@
-.matchupMain {
+.startAndSitMain {
     background-color: hsla(0, 4.11%, 14.31%, 1);
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     width: 85vw;
 }
 
-.searchPlayer {
-    border-radius: 30px;
-    width: 260px;
-    background-color: transparent;
-    border: solid white 2px;
-    padding: 7px;
-    color: white;
+.playerCard {
+    border: solid green 2px;
+    border-radius: 10px;
+    height: 540px;
+    padding: 20px;
+    overflow-y: auto;
 }
 
-.rankingCont {
-    /* padding-inline: 80px; */
+.playerCard input {
+
     width: 100%;
-    overflow-x: auto !important;
-}
-
-.rankingCont table {
     color: white;
-    min-height: 500px;
-}
-
-td {
-    text-align: center;
-    border: solid 1px white;
-    vertical-align: middle !important;
-}
-
-th {
-    text-align: center;
-    border: solid 1px white;
-}
-
-@media(max-width: 310px) {
-    .searchPlayer {
-        border-radius: 30px;
-        width: 240px;
-        background-color: transparent;
-        border: solid white 2px;
-        padding: 7px;
-    }
-}
-
-.buttonDiv {
+    background-color: transparent;
+    border: 2px solid white;
+    left: 50%;
+    transform: translateX(-50%);
     position: relative;
-    width: 200px;
-    height: 30px;
+    border-radius: 5px;
+    padding: 8px;
+
 }
 
-.dynasty {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    background-color: transparent;
-    border: solid green 2px;
-    color: white;
-}
-
-.redraft {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    left: 50%;
-    background-color: transparent;
-    border: solid green 2px;
-    color: white;
-}
-
-.dynastyClicked {
+.playerName {
+    text-align: center;
     background-color: green;
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    border: solid green 2px;
-    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 6px;
+    transition: 0.15s ease-in-out;
 }
-.redraftClicked {
-    background-color: green;
-    position: absolute;
-    width: 50%;
-    height: 100%;
+.playerName:hover {
+    background-color: greenyellow;
+    color: black;
+}
+
+.removePlayer {
+    width: 100%;
+    color: white;
+    background-color: red;
+    /* border: 2px solid white; */
+    border: none;
     left: 50%;
-    border: solid green 2px;
-    color: white;
+    transform: translateX(-50%);
+    position: relative;
+    border-radius: 5px;
+    padding: 8px;
+    transition: 0.2s ease-in-out;
 }
 
-
-.redraftClicked:focus {
-    outline: none;
-}
-.redraft:focus {
-    outline: none;
+.removePlayer:hover {
+    background-color: rgb(235, 89, 89);
 }
 
-.dynasty:focus {
+.removePlayer:focus {
     outline: none;
-}
 
-.dynastyClicked:focus {
-    outline: none;
 }
