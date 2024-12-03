@@ -6,7 +6,7 @@ function BlogPost(props) {
 
   const location = useLocation();
   const handleDelete = () => {
-    axios.delete(`http://localhost:5000/api/blogs/${props.id}`)
+    axios.delete(`http://46.202.178.195:5000/api/blogs/${props.id}`)
       .then(() => {
         alert('BLOG DELETED');
         props.setRefreshApiCall(prev => prev + 1);
@@ -45,7 +45,7 @@ function BlogPost(props) {
           <div className={`${location.pathname === '/' ? style.blogPostMainForHome : style.blogPostMain} container-fluid`}>
             <div className="row">
               <div className={`col-md-3 p-1 ${style.blogImageCont}`}>
-                <img className={style.blogImage} src={`http://localhost:5000${props.image}`} alt="" />
+                <img className={style.blogImage} src={`http://46.202.178.195:5000${props.image}`} alt="" />
               </div>
               <div className={`col-md-9 py-0 ${style.blogPostTextCont}`}>
                 <h2>{props.heading}</h2>
@@ -59,7 +59,7 @@ function BlogPost(props) {
           <div onClick={() => goToBlog()} className={`${location.pathname === '/' ? style.blogPostMainForHome : style.blogPostMain} container-fluid`}>
             <div className="row">
               <div className={`col-md-3 p-1 ${style.blogImageCont}`}>
-                <img className={style.blogImage} src={`http://localhost:5000${props.image}`} alt="" />
+                <img className={style.blogImage} src={`http://46.202.178.195:5000${props.image}`} alt="" />
               </div>
               <div className={`col-md-9 py-0 ${style.blogPostTextCont}`}>
                 <h2>{props.heading}</h2>

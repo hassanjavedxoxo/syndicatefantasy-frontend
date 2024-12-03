@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import Loader from '../components/Loader'
+import { useNavigate } from 'react-router-dom'
 function PastProduction() {
   const [data, setData] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -12,7 +13,7 @@ function PastProduction() {
 
   useEffect(() => {
     setLoader(true)
-    axios.get(`http://localhost:5000/api/webscrap/pastproduction/`)
+    axios.get(`http://46.202.178.195:5000/api/webscrap/pastproduction/`)
       .then((res) => {
         console.log(res.data);
         setData(res.data);
@@ -35,6 +36,13 @@ function PastProduction() {
     setFilterData(filtered);
   }
 
+  const navigate = useNavigate();
+  const goToAddBlogPage = () => navigate('/adminaddblog');
+    const goToAddYoutubePage = () => navigate('/adminaddyoutubepost');
+    const goToProjectedPoints = () => navigate('/projection');
+    const goToPastProductions = () => navigate('/pastproduction');
+    const goToBettingData = () => navigate('/bettingdata');
+
   return (
     <>
       {loader ? <Loader /> : null}
@@ -45,6 +53,26 @@ function PastProduction() {
 
 
         <div className={`${style.rankingCont}`}>
+        <div className="row mb-3">
+        <div className="col-auto my-3">
+            <button onClick={() => navigate('/admin')} className={style.adminNavigate}>ADMIN HOME</button>
+          </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToAddBlogPage} className={style.adminNavigate}>ADD BLOG</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToAddYoutubePage} className={style.adminNavigate}>ADD YOUTUBE POST</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToProjectedPoints} className={style.adminNavigate}>PROJECTED POINTS</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToPastProductions} className={style.adminNavigate}>PAST PRODUCTIONS</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToBettingData} className={style.adminNavigate}>BETTING DATA</button>
+                    </div>
+                </div>
 
           <table className={`table ${style.rankingTable}`}>
             <thead>

@@ -32,10 +32,10 @@ function Navbar() {
                     <div className={`${navTradeLargeOpen ? style.tradeContainerOpen : style.tradeContainer} container-fluid`}>
                         <Link className={style.linkLarge} to={'/trade/KeepTradeCut'}>TRADE CALCULATOR</Link><br /><br />
                         <Link className={style.linkLarge} to={'/tradedatabase'}>TRADE DATABASE</Link><br /><br />
-                    <Link className={`${style.linkLarge}`} to={'/start&sit'}>START & SIT TOOL</Link><br /><br />
-                    <Link className={`${style.linkLarge}`} to={'/projection'}>PROJECTION POINTS</Link><br /><br />
-                    <Link className={`${style.linkLarge}`} to={'/pastproduction'}>PAST PRODUCTIONS</Link><br /><br />
-                    <Link className={`${style.linkLarge}`} to={'/bettingdata'}>BETTING DATA</Link>
+                    <Link className={`${style.linkLarge}`} to={'/start&sit'}>START & SIT TOOL</Link>
+                    {/* <Link className={`${style.linkLarge}`} to={'/projection'}>PROJECTION POINTS</Link><br /><br /> */}
+                    {/* <Link className={`${style.linkLarge}`} to={'/pastproduction'}>PAST PRODUCTIONS</Link><br /><br /> */}
+                    {/* <Link className={`${style.linkLarge}`} to={'/bettingdata'}>BETTING DATA</Link> */}
                     </div>
                     </div>
                     <Link className={`${style.link}`} to={'/ourteam'}>OUR TEAM</Link>
@@ -68,12 +68,12 @@ function Navbar() {
                 <div className={`${navTradeOpen ? style.navTradeSmallOpen : style.navTradeSmall}`}>
                     <i className={`fa-solid fa-chevron-left ${style.menuClose}`} onClick={() => setNavTradeOpen(!navTradeOpen)}></i>
                     <div className={`${style.navSmallSub}`}>
-                        <Link to={'/tradecalculator/KeepTradeCut'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>TRADE CALCULATOR</Link>
+                        <Link to={'/trade/KeepTradeCut'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>TRADE CALCULATOR</Link>
                         <Link to={'/tradedatabase'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>TARDE DATABASE</Link>
                         <Link to={'/start&sit'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>START & SIT TOOL</Link>
-                        <Link to={'/projection'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>PROJECTION POINTS</Link>
+                        {/* <Link to={'/projection'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>PROJECTION POINTS</Link>
                         <Link to={'/pastproduction'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>PAST PRODUCTION</Link>
-                        <Link to={'/bettingdata'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>BETTING DATA</Link>
+                        <Link to={'/bettingdata'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>BETTING DATA</Link> */}
                     </div>
                 </div>
 

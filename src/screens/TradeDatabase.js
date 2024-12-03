@@ -5,6 +5,7 @@ import style from '../style/TradeDatabase.module.css';
 import axios from 'axios';
 import Loader from '../components/Loader';
 import { useParams } from 'react-router-dom';
+import MyLeagueComponent from '../components/MyLeagueComponent';
 
 function TradeDatabase() {
     const [loader, setLoader] = useState(false); // State to manage the loader's visibility
@@ -21,7 +22,7 @@ function TradeDatabase() {
     // Fetch the players data when the component mounts
     useEffect(() => {
         setLoader(true); // Show loader while fetching data
-        axios.get('http://localhost:5000/api/dynasty-ranking/all')
+        axios.get('http://46.202.178.195:5000/api/dynasty-ranking/all')
             .then((res) => {
                 setPlayersData(res.data); // Store the fetched player data
             }).catch((err) => {
@@ -91,7 +92,7 @@ function TradeDatabase() {
             side1 = input1Players.map(player => player.id); // Assuming `id` is the player ID field
 
             // Send the POST request with the player IDs for side1 and side2
-            axios.post('http://localhost:5000/api/database/get', {
+            axios.post('http://46.202.178.195:5000/api/database/get', {
                 side1: side1,
                 category: isDynasty ? 'dynasty' : 'redraft'
             })
@@ -112,7 +113,7 @@ function TradeDatabase() {
             // Store the player IDs from input2Players into side2
             side2 = input2Players.map(player => player.id);
 
-            axios.post('http://localhost:5000/api/database/get', {
+            axios.post('http://46.202.178.195:5000/api/database/get', {
                 side1: side1,
                 side2: side2,
                 category: isDynasty ? 'dynasty' : 'redraft'
@@ -145,20 +146,25 @@ function TradeDatabase() {
             setIsDynasty(false);
         }
     }
+
+    const handleRemovePlayer = (id, inputNumber) => {
+        if (inputNumber === 1) {
+            setInput1Players((prevState) => prevState.filter((player) => player.id !== id));
+        } else {
+            setInput2Players((prevState) => prevState.filter((player) => player.id !== id));
+        }
+    };
     return (
         <>
             {loader ? <Loader /> : null} {/* Show loader when data is being fetched */}
             <Navbar />
             <div className={`${style.tradeDatabaseMain} container-fluid`}>
+            <h2 className="mb-4">TRADE DATABASE</h2>
+            <MyLeagueComponent /> <br />
                 
-                <h4 className='mt-4 mb-3' style={{color:'green'}}>Keys:</h4>
-                <p><span style={{color:'green'}}>QB:</span> This setting specifies how many quarterbacks are required to be started in the lineup each week. For example, some leagues may require 2 quarterbacks to be in the starting lineup.</p>
-                <p><span style={{color:'green'}}>TM:</span> This setting might refer to specific rules or restrictions related to teams in the league. It could indicate a particular team format or configuration used for rosters or lineup settings.</p>
-                <p><span style={{color:'green'}}>PPR:</span> In leagues with PPR, players earn points for each reception they make. This scoring system increases the value of players who catch passes, such as wide receivers and running backs.</p>
-                <p><span style={{color:'green'}}>TEP:</span> In leagues with a Tight End Premium, tight ends are awarded additional points for each reception they make. This format makes tight ends more valuable compared to other positions.</p>
-                <p className='mb-5'><span style={{color:'green'}}>START:</span> This setting defines how many players a team must start in their lineup each week. For example, a team may be required to start 9 players from their roster during each match.</p>
+                
 
-                <div className={`${style.buttonDiv}`}>
+                <div className={`${style.buttonDiv} mt-4`}>
                     <button className={isDynasty ? style.dynastyClicked : style.dynasty} onClick={() => changeCategory('dynasty')}>Dynasty</button>
                     <button className={isDynasty ? style.redraft : style.redraftClicked} onClick={() => changeCategory('redraft')}>Redraft</button>
                 </div>
@@ -174,7 +180,15 @@ function TradeDatabase() {
                         <div className="row px-0" style={{ paddingTop: '20px' }}>
                             {input1Players.map((value) => (
                                 <div className="col-auto my-2">
-                                    <button className={style.selectedPlayer}>{value.name}</button>
+                                    <button className={style.selectedPlayer} style={{position:'relative', display:'flex', paddingLeft:'10px'}}>
+                                    {value.name}
+                                    <span style={{position:'absolute', right:'0', height:'100%', top:'0', display:'flex', justifyContent:'center', alignItems:'center', background:'red', width:'30%', borderTopRightRadius:'20px', borderBottomRightRadius:'20px'}}
+                                        className={style.removeButton}
+                                        onClick={() => handleRemovePlayer(value.id, 1)}
+                                    >
+                                        <i class="fa-solid fa-trash"></i>
+                                    </span>
+                                </button>
                                 </div>
                             ))}
                         </div>
@@ -197,7 +211,15 @@ function TradeDatabase() {
                         <div className="row px-0" style={{ paddingTop: '20px' }}>
                             {input2Players.map((value) => (
                                 <div className="col-auto my-2">
-                                    <button className={style.selectedPlayer}>{value.name}</button>
+                                   <button className={style.selectedPlayer} style={{position:'relative', display:'flex', paddingLeft:'10px'}}>
+                                    {value.name}
+                                    <span style={{position:'absolute', right:'0', height:'100%', top:'0', display:'flex', justifyContent:'center', alignItems:'center', background:'red', width:'30%', borderTopRightRadius:'20px', borderBottomRightRadius:'20px'}}
+                                        className={style.removeButton}
+                                        onClick={() => handleRemovePlayer(value.id, 1)}
+                                    >
+                                        <i class="fa-solid fa-trash"></i>
+                                    </span>
+                                </button>
                                 </div>
                             ))}
                         </div>
@@ -247,13 +269,20 @@ function TradeDatabase() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={4} style={{ textAlign: 'center' }}>SEARCH TO GET THE DATA</td>
+                                    <td colSpan={4} style={{ textAlign: 'center', height:'100%' }}>SEARCH TO GET THE DATA</td>
                                 </tr>
                             )}
                         </tbody>
                     </table>
                 </div>
+                <h4 className='mt-4 mb-3' style={{color:'green'}}>Keys:</h4>
+                <p><span style={{color:'green'}}>QB:</span> This setting specifies how many quarterbacks are required to be started in the lineup each week. For example, some leagues may require 2 quarterbacks to be in the starting lineup.</p>
+                <p><span style={{color:'green'}}>TM:</span> This setting might refer to specific rules or restrictions related to teams in the league. It could indicate a particular team format or configuration used for rosters or lineup settings.</p>
+                <p><span style={{color:'green'}}>PPR:</span> In leagues with PPR, players earn points for each reception they make. This scoring system increases the value of players who catch passes, such as wide receivers and running backs.</p>
+                <p><span style={{color:'green'}}>TEP:</span> In leagues with a Tight End Premium, tight ends are awarded additional points for each reception they make. This format makes tight ends more valuable compared to other positions.</p>
+                <p className='mb-5'><span style={{color:'green'}}>START:</span> This setting defines how many players a team must start in their lineup each week. For example, a team may be required to start 9 players from their roster during each match.</p>
             </div>
+            
             <Footer />
         </>
     );

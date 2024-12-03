@@ -20,11 +20,11 @@ function Admin() {
             navigate('/adminlogin')
         }
         setLoader(true);
-        axios.get('http://localhost:5000/api/blogs')
+        axios.get('http://46.202.178.195:5000/api/blogs')
             .then((res) => {
                 setBlogData(res.data);
                 console.log('RECEIVED BLOG DATA', res.data);
-                return axios.get('http://localhost:5000/api/youtube');
+                return axios.get('http://46.202.178.195:5000/api/youtube');
             })
             .then((res) => {
                 setYoutubeData(res.data);
@@ -40,6 +40,9 @@ function Admin() {
 
     const goToAddBlogPage = () => navigate('/adminaddblog');
     const goToAddYoutubePage = () => navigate('/adminaddyoutubepost');
+    const goToProjectedPoints = () => navigate('/projection');
+    const goToPastProductions = () => navigate('/pastproduction');
+    const goToBettingData = () => navigate('/bettingdata');
 
     return (
         <>
@@ -52,6 +55,15 @@ function Admin() {
                     </div>
                     <div className="col-auto my-3">
                         <button onClick={goToAddYoutubePage} className={style.adminNavigate}>ADD YOUTUBE POST</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToProjectedPoints} className={style.adminNavigate}>PROJECTED POINTS</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToPastProductions} className={style.adminNavigate}>PAST PRODUCTIONS</button>
+                    </div>
+                    <div className="col-auto my-3">
+                        <button onClick={goToBettingData} className={style.adminNavigate}>BETTING DATA</button>
                     </div>
                 </div>
                 <h2>ALL BLOGS</h2>

@@ -26,7 +26,7 @@ const Blog = () => {
         <div className={`${style.blogMain} container-fluid`}>
 
             <h1>{heading}</h1>
-            {image && <img src={`http://localhost:5000${image}`} alt="Blog" />}
+            {image && <img src={`http://46.202.178.195:5000${image}`} alt="Blog" />}
             {data && data.map((item, index) => (
                 <div key={index}>
                     <h2>{item.heading}</h2>

@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import style from '../style/StartAndSit.module.css';
 import axios from 'axios';
 import Loader from '../components/Loader';
+import MyLeagueComponent from '../components/MyLeagueComponent';
 
 function StartAndSit() {
     const [loader, setLoader] = useState(false);
@@ -18,7 +19,7 @@ function StartAndSit() {
 
     useEffect(() => {
         setLoader(true);
-        axios.get('http://localhost:5000/api/webscrap/start&sit')
+        axios.get('http://46.202.178.195:5000/api/webscrap/start&sit')
             .then((response) => {
                 setPassingYard(response.data['passingYards']);
                 setRushingYard(response.data['rushingYards']);
@@ -56,7 +57,8 @@ function StartAndSit() {
                 {loader ? <Loader/> : null}
                     <Navbar />
                     <div className={`${style.startAndSitMain} container-fluid`}>
-                        <h2 className='mt-3'>Start & Sit Tool</h2>
+                        <h2 className='mt-3 mb-4'>Start & Sit Tool</h2>
+                        <MyLeagueComponent /> <br />
                         <div className="row my-5" style={{ display: 'flex', justifyContent: 'center' }}>
                             <div className="col-md-4 my-3">
                                 <div className={style.playerCard}>

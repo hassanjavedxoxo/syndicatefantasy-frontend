@@ -235,3 +235,28 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  .recommendationBox {
+    border: solid 2px white;
+    border-radius: 10px;
+    padding: 10px;
+    padding-top: 30px;
+  }
+
+  .recommendationBox table {
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+  }
+
+  .recommendationBox td {
+    padding-inline: 20px;
+    border: none;
+    padding-top: 20px;
+  }
+
+  .recommendationBox button {
+    background-color: green;
+    color: white;
+    border: none;
+  }

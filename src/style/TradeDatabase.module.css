@@ -31,7 +31,7 @@
 .dbResult {
     /* border: solid 2px white; */
     /* border-radius: 5px; */
-    height: 500px;
+    max-height: 500px;
     overflow-x: auto;
     overflow-y: auto;
 }
@@ -68,8 +68,8 @@
     background-color: green;
     border-radius: 20px;
     border: none;
-    padding: 10px;
     color: white;
+    width: 210px;
 }
 
 

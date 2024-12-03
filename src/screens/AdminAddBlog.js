@@ -69,7 +69,7 @@ function AdminAddBlog() {
 
     try {
       // Make the POST request to the backend API (adjust the URL as needed)
-      const response = await axios.post('http://localhost:5000/api/blogs', formData, {
+      const response = await axios.post('http://46.202.178.195:5000/api/blogs', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',  // Set correct content type for file upload
         },

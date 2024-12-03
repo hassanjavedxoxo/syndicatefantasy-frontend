@@ -3,7 +3,7 @@ import style from '../style/YoutubePost.module.css'
 import axios from 'axios'
 function YoutubePost(props) {
   const handleDelete = () => {
-    axios.delete(`http://localhost:5000/api/youtube/${props.id}`)
+    axios.delete(`http://46.202.178.195:5000/api/youtube/${props.id}`)
     .then(() => {
       alert('POST DELETED')
       props.setRefreshApiCall(prev => prev + 1);

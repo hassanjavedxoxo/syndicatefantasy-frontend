@@ -42,7 +42,7 @@ function Footer() {
                         <div className="col-auto py-2">
                             <Link className={style.footerLinks} to={'/start&sit'}>Start & Sit Tool</Link>
                         </div>
-                        <div className="col-auto py-2">
+                        {/* <div className="col-auto py-2">
                             <Link className={style.footerLinks} to={'/pastproduction'}>Projection Points</Link>
                         </div>
                         <div className="col-auto py-2">
@@ -50,7 +50,7 @@ function Footer() {
                         </div>
                         <div className="col-auto py-2">
                             <Link className={style.footerLinks} to={'/bettingdata'}>Betting Data</Link>
-                        </div>
+                        </div> */}
                         <div className="col-auto py-2">
                             <Link className={style.footerLinks} to={'/ourteam'}>Our Team</Link>
                         </div>

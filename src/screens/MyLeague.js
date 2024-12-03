@@ -13,6 +13,7 @@ function MyLeague() {
   const [draft, setDraft] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null); // For error handling
+  const [players, setPlayers] = useState([]); // State to store player data
 
   const leagues = JSON.parse(localStorage.getItem('leagues')) || [];
   const firstLeague = leagues[leagues.length - 1];
@@ -27,10 +28,26 @@ function MyLeague() {
 
   // If no leagues are in localStorage, redirect to league import
   useEffect(() => {
-    if (!localStorage.getItem('leagues')) {
+    const leagues = JSON.parse(localStorage.getItem('leagues'));
+    
+    if (!leagues || leagues.length === 0) {
       navigate('/leagueimport');
     }
   }, [navigate]);
+
+
+
+  const removeLeagueFromLocalStorage = (leagueIdToRemove) => {
+    // Get the current array of leagues from localStorage
+    const leagues = JSON.parse(localStorage.getItem('leagues')) || [];
+  
+    // Filter out the league with the specified leagueId
+    const updatedLeagues = leagues.filter(league => league.leagueId !== leagueIdToRemove);
+  
+    // Save the updated array back to localStorage
+    localStorage.setItem('leagues', JSON.stringify(updatedLeagues));
+    alert('Wrong League ID, League Has Been Removed. Import Your League Again')
+  };
 
   // Fetch data for the selected league
   useEffect(() => {
@@ -47,13 +64,20 @@ function MyLeague() {
         const leagueResponse = await Axios.get(`https://api.sleeper.app/v1/league/${whichLeague}`);
         const teamResponse = await Axios.get(`https://api.sleeper.app/v1/league/${whichLeague}/rosters`);
         const draftResponse = await Axios.get(`https://api.sleeper.app/v1/league/${whichLeague}/drafts`);
+        const nameFromId = await Axios.get('http://46.202.178.195:5000/api/sleeperPlayers');
+
+        console.log(leagueData, teamResponse, draftResponse);
+
+
+        // Store player data in state
+        setPlayers(nameFromId.data);
 
         setLeagueData(leagueResponse.data);
         setTeamData(teamResponse.data);
         setDraft(draftResponse.data[0]); // Access the first draft
       } catch (error) {
         console.error("Error fetching data:", error);
-        setError("Failed to load league data. Please try again later.");
+        removeLeagueFromLocalStorage(whichLeague);
       } finally {
         setLoading(false);
       }
@@ -70,6 +94,12 @@ function MyLeague() {
   if (error) {
     return <div className={style.error}>{error}</div>;
   }
+
+  // Function to get the player's name by ID
+  const getPlayerNameById = (playerId) => {
+    const player = players.find(p => p.playerId === playerId);
+    return player ? player.name : playerId;
+  };
 
   return (
     <>
@@ -90,7 +120,7 @@ function MyLeague() {
 
         <h4 style={{ color: 'green' }} className="mt-5 mb-4">Team/Roster</h4>
 
-        {teamData ? teamData.map((team) => (
+        {Array.isArray(teamData) ?  teamData.map((team) => (
           <div key={team.roster_id} className={`${style.teamCont}`}>
             <h5 style={{ color: 'green' }}>Team ID: {team.roster_id}</h5>
             <p>Wins: {team.settings.wins} | Losses: {team.settings.losses}</p>
@@ -101,17 +131,21 @@ function MyLeague() {
                 starter === "0" ? (
                   <div key={index} className="col-auto"><p>○ Empty Slot</p></div>
                 ) : (
-                  <div key={index} className="col-auto"><p>○ {starter}</p></div>
+                  <div key={index} className="col-auto"><p>○ {getPlayerNameById(starter)}</p></div> // Display player name
                 )
               )}
             </div>
 
             <h4 style={{ color: 'green' }}>Bench</h4>
             <div className="row">
-              {team.bench
-                ? team.bench.map((benchPlayer, index) => (
-                  <div key={index} className="col-auto"><p>○ {benchPlayer}</p></div>
-                ))
+              {team.players
+                ? team.players
+                  .filter((benchPlayer) => !team.starters.includes(benchPlayer)) // Filter out starters from players
+                  .map((benchPlayer, index) => (
+                    <div key={index} className="col-auto">
+                      <p>○ {getPlayerNameById(benchPlayer)}</p> {/* Display player name */}
+                    </div>
+                  ))
                 : <div className="col-auto"><p>○ No Bench Players</p></div>}
             </div>
           </div>

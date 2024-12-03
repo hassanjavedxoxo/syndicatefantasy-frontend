@@ -14,6 +14,27 @@
     color: white;
 }
 
+.adminNavigate {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    padding-inline: 10px;
+    border: none; 
+    padding: 10px;
+    transition: 0.2s ease-in-out;
+
+}
+.adminNavigate:hover {
+    background-color: green;
+    color: white;
+    border-radius: 20px;
+    padding-inline: 10px;
+    border: none; 
+    padding: 10px;
+    transform: scale(1.05);
+
+}
+
 .rankingCont {
     /* padding-inline: 80px; */
     width: 100%;

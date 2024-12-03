@@ -15,11 +15,11 @@ function Home() {
 
     useEffect(() => {
         setLoader(true);
-        axios.get('http://localhost:5000/api/blogs')
+        axios.get('http://46.202.178.195:5000/api/blogs')
             .then((res) => {
                 setBlogData(res.data);
                 console.log('RECEIVED BLOG DATA', res.data);
-                return axios.get('http://localhost:5000/api/youtube');
+                return axios.get('http://46.202.178.195:5000/api/youtube');
             })
             .then((res) => {
                 setYoutubeData(res.data);

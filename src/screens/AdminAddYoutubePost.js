@@ -25,7 +25,7 @@ function AdminAddYoutubePost() {
   }
 
   const handleSubmit = () => {
-    axios.post('http://localhost:5000/api/youtube', {
+    axios.post('http://46.202.178.195:5000/api/youtube', {
       heading: heading,
       videoLink: link
     }).then((res) => {

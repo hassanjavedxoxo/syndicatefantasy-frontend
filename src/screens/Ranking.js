@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../components/Footer';
 import Loader from '../components/Loader';
+import MyLeagueComponent from '../components/MyLeagueComponent';
 
 function Ranking() {
     const [data, setData] = useState(null);
@@ -33,8 +34,11 @@ function Ranking() {
                 }
 
                 if (endpoint) {
-                    const response = await axios.get(`http://localhost:5000/api/${endpoint}`);
+                    const response = await axios.get(`http://46.202.178.195:5000/api/${endpoint}`);
+
                     setData(response.data);
+                    console.log(response.data);
+
                     setFilterDataState(response.data); // Set initial filter state to the full data
                     setLoading(false);
                 }
@@ -75,9 +79,10 @@ function Ranking() {
             <div className={`${style.rankingMain} container-fluid p-0`}>
 
                 <h2 className="mb-4">{category.replace(/-/g, ' ').toUpperCase()}</h2>
+                <MyLeagueComponent/> <br/>
                 <input
                     type="text"
-                    className={style.searchPlayer}
+                    className={`${style.searchPlayer} mt-4`}
                     placeholder="Search..."
                     value={searchQuery} // Bind the input value to searchQuery
                     onChange={handleSearchChange} // Handle input change
@@ -112,7 +117,7 @@ function Ranking() {
                         </button>
                     </div>
                     <div className="col-auto my-3">
-                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/DynastyProcess')}
+                        <button style={{ width: 'auto' }} onClick={() => {navigate('/ranking/DynastyProcess'); setIsSuperflexChecked(false)}}
                             className={category === 'DynastyProcess' ? style.positionButtonSelected : style.positionButton}
                         >
                             Dynasty Process
@@ -179,20 +184,20 @@ function Ranking() {
                     </div>
                     {
                         category === 'KeepTradeCut' || category === 'DynastyProcess' ? null :
-                        <div className="col-auto my-3">
-                        <p className={style.positionButton} style={{ width: 'auto', border: 'solid transparent 2px' }}>
-                            SUPERFLEX
-                            <span className='pl-2'>
-                                <input
-                                    onChange={handleSuperflexChange}
-                                    type="checkbox"
-                                    checked={isSuperflexChecked}
-                                />
-                            </span>
-                        </p>
-                    </div>
+                            <div className="col-auto my-3">
+                                <p className={style.positionButton} style={{ width: 'auto', border: 'solid transparent 2px' }}>
+                                    SUPERFLEX
+                                    <span className='pl-2'>
+                                        <input
+                                            onChange={handleSuperflexChange}
+                                            type="checkbox"
+                                            checked={isSuperflexChecked}
+                                        />
+                                    </span>
+                                </p>
+                            </div>
                     }
-                    
+
                 </div>
 
                 <div className={`${style.rankingCont}`}>
@@ -213,11 +218,17 @@ function Ranking() {
                                     category === 'DynastyProcess' ? null :
                                         <th scope="col">AGE</th>
                                 }
+
+                                {
+                                    category === 'KeepTradeCut' ?
+                                        <th scope="col">30 DAYS TREND</th> : null
+                                }
                                 <th scope="col">VALUE</th>
                                 {
                                     category === 'KeepTradeCut' ? <th scope="col">SUPERFLEX VALUE</th> : null
                                 }
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
@@ -230,16 +241,36 @@ function Ranking() {
                                         <td>{value.name}</td>
                                         {
                                             category === 'DynastyProcess' ? null :
-                                            <>
-                                                <td>{value.team}</td>
-                                                <td>{value.position}</td>
-                                            </>
+                                                <>
+                                                    <td>{value.team}</td>
+                                                    <td>{value.position}</td>
+                                                </>
                                         }
                                         {
                                             category === 'DynastyProcess' ? null :
                                                 <td>{category === 'KeepTradeCut' ? value.age : value.maybeAge}</td>
                                         }
-                                        <td>{value.value}</td>
+                                        {
+                                            category === 'KeepTradeCut' ? (
+                                                value.trend && value.trend.includes('green:') ? (
+                                                    <td style={{ color: 'green' }}>
+                                                        <i className="fa-solid fa-caret-up"></i>{' '}
+                                                        {value.trend.replace('green:', '')}
+                                                    </td>
+                                                ) : value.trend && value.trend.includes('red:') ? (
+                                                    <td style={{ color: 'red' }}>
+                                                        <i className="fa-solid fa-caret-down"></i>{' '}
+                                                        {value.trend.replace('red:', '')}
+                                                    </td>
+                                                ) : (
+                                                    <td>--</td> // Placeholder for missing trend data
+                                                )
+                                            ) : null
+                                            
+                                        }
+
+                                        {isSuperflexChecked ? <td>{value.superflexValue}</td> : <td>{value.value}</td>}
+                                        {/* <td>{value.value}</td> */}
                                         {
                                             category === 'KeepTradeCut' ? <td>{value.superflexValue}</td> : null
                                         }
