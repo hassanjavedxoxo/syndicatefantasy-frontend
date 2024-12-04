@@ -270,12 +270,46 @@ function TradeCalculator() {
                             <div className={style.teamOneCont}>
                                 {
                                     teamOneData.map((value, index) => (
-                                        <p className='pl-3' key={index} style={{background:'rgb(16, 239, 16)', position:'relative', color:'black', width:'70%', borderRadius:'5px', height:'30px', alignItems:'center', display:'flex', left:'50%', transform:'translateX(-50%)'}}>
-                                            {value.name} - {isSuperflex ? value.superflexValue : value.value}
-                                            <button style={{position:'absolute', right:'0', height:'100%', border:'none', background:'red', color:'white', borderTopRightRadius:'5px', borderBottomRightRadius:'5px'}}
-                                                className={`${style.removeButton}`} 
-                                                onClick={() => removeFromTeamOne(value)}>Remove</button>
-                                        </p>
+                                        <p
+  className='pl-3'
+  key={index}
+  style={{
+    background: 'rgb(16, 239, 16)',
+    position: 'relative',
+    color: 'black',
+    width: '70%',
+    borderRadius: '5px',
+    height: '30px',
+    alignItems: 'center',
+    display: 'flex',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    paddingRight: '60px', // Add padding to prevent overlap with the button
+    whiteSpace: 'nowrap', // Prevent text wrapping
+    overflow: 'hidden', // Hide overflow
+    textOverflow: 'ellipsis', // Show ellipsis for overflowing text
+  }}
+>
+  {value.name} - {isSuperflex ? value.superflexValue : value.value}
+  <button
+    style={{
+      position: 'absolute',
+      right: '0',
+      height: '100%',
+      border: 'none',
+      background: 'red',
+      color: 'white',
+      borderTopRightRadius: '5px',
+      borderBottomRightRadius: '5px',
+      width: '60px', // Fixed width for the button
+    }}
+    className={`${style.removeButton}`}
+    onClick={() => removeFromTeamOne(value)}
+  >
+    <i class="fa-solid fa-trash"></i>
+  </button>
+</p>
+
                                     ))
                                 }
                                 <p className={`text-center`}>TOTAL VALUE: {teamOnePlayerValue}</p>
