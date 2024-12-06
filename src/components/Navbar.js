@@ -69,7 +69,7 @@ function Navbar() {
                     <i className={`fa-solid fa-chevron-left ${style.menuClose}`} onClick={() => setNavTradeOpen(!navTradeOpen)}></i>
                     <div className={`${style.navSmallSub}`}>
                         <Link to={'/trade/KeepTradeCut'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>TRADE CALCULATOR</Link>
-                        <Link to={'/tradedatabase'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>TARDE DATABASE</Link>
+                        <Link to={'/tradedatabase'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>TRADE DATABASE</Link>
                         <Link to={'/start&sit'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>START & SIT TOOL</Link>
                         {/* <Link to={'/projection'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>PROJECTION POINTS</Link>
                         <Link to={'/pastproduction'} onClick={() => { setNavOpen(!navOpen); setNavRankingOpen(!navRankingOpen) }} className={`${style.linkSmall}`}>PAST PRODUCTION</Link>

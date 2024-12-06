@@ -87,6 +87,7 @@ function TradeDatabase() {
         // Check if input1Players or input2Players are empty
         if (input1Players.length === 0) {
             alert('Fill the required field for Side 1');
+            setLoader(false);
         } else if (input2Players.length === 0) {
             // Store the player IDs from input1Players into side1
             side1 = input1Players.map(player => player.id); // Assuming `id` is the player ID field
@@ -161,6 +162,7 @@ function TradeDatabase() {
             <div className={`${style.tradeDatabaseMain} container-fluid`}>
             <h2 className="mb-4">TRADE DATABASE</h2>
             <MyLeagueComponent /> <br />
+            <button style={{background:'green', color:'white', border:'none'}} type="button" className="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Keys</button>
                 
                 
 
@@ -186,7 +188,7 @@ function TradeDatabase() {
                                         className={style.removeButton}
                                         onClick={() => handleRemovePlayer(value.id, 1)}
                                     >
-                                        <i class="fa-solid fa-trash"></i>
+                                        <i className="fa-solid fa-trash"></i>
                                     </span>
                                 </button>
                                 </div>
@@ -215,9 +217,9 @@ function TradeDatabase() {
                                     {value.name}
                                     <span style={{position:'absolute', right:'0', height:'100%', top:'0', display:'flex', justifyContent:'center', alignItems:'center', background:'red', width:'30%', borderTopRightRadius:'20px', borderBottomRightRadius:'20px'}}
                                         className={style.removeButton}
-                                        onClick={() => handleRemovePlayer(value.id, 1)}
+                                        onClick={() => handleRemovePlayer(value.id, 2)}
                                     >
-                                        <i class="fa-solid fa-trash"></i>
+                                        <i className="fa-solid fa-trash"></i>
                                     </span>
                                 </button>
                                 </div>
@@ -275,12 +277,26 @@ function TradeDatabase() {
                         </tbody>
                     </table>
                 </div>
-                <h4 className='mt-4 mb-3' style={{color:'green'}}>Keys:</h4>
+
+                
+
+<div className="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div className="modal-dialog modal-lg">
+    <div className="modal-content p-4" style={{backgroundColor: 'hsla(0, 4.11%, 14.31%, 1)'}}>
+    <button type="button" className="close" style={{color:'white'}} data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    <h4 className='mt-4 mb-3' style={{color:'green'}}>Keys:</h4>
                 <p><span style={{color:'green'}}>QB:</span> This setting specifies how many quarterbacks are required to be started in the lineup each week. For example, some leagues may require 2 quarterbacks to be in the starting lineup.</p>
                 <p><span style={{color:'green'}}>TM:</span> This setting might refer to specific rules or restrictions related to teams in the league. It could indicate a particular team format or configuration used for rosters or lineup settings.</p>
                 <p><span style={{color:'green'}}>PPR:</span> In leagues with PPR, players earn points for each reception they make. This scoring system increases the value of players who catch passes, such as wide receivers and running backs.</p>
                 <p><span style={{color:'green'}}>TEP:</span> In leagues with a Tight End Premium, tight ends are awarded additional points for each reception they make. This format makes tight ends more valuable compared to other positions.</p>
                 <p className='mb-5'><span style={{color:'green'}}>START:</span> This setting defines how many players a team must start in their lineup each week. For example, a team may be required to start 9 players from their roster during each match.</p>
+    </div>
+  </div>
+</div>
+                
+                
             </div>
             
             <Footer />

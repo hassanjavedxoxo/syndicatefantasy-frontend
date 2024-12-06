@@ -60,7 +60,7 @@ function Ranking() {
         setWhichButtonClicked('ALL');
     };
 
-    const [whichButtonClicked, setWhichButtonClicked] = useState('ALL');
+    const [whichButtonClicked, setWhichButtonClicked] = useState('');
 
     const handleSearchChange = (e) => {
         const query = e.target.value.toLowerCase();
@@ -72,6 +72,13 @@ function Ranking() {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        if (category !== 'dynasty-rookie-ranking') {
+            setWhichButtonClicked('ALL');
+        }
+    }, [category]);
+
+
     return (
         <>
             {loading ? <Loader /> : null}
@@ -79,7 +86,7 @@ function Ranking() {
             <div className={`${style.rankingMain} container-fluid p-0`}>
 
                 <h2 className="mb-4">{category.replace(/-/g, ' ').toUpperCase()}</h2>
-                <MyLeagueComponent/> <br/>
+                <MyLeagueComponent /> <br />
                 <input
                     type="text"
                     className={`${style.searchPlayer} mt-4`}
@@ -87,26 +94,25 @@ function Ranking() {
                     value={searchQuery} // Bind the input value to searchQuery
                     onChange={handleSearchChange} // Handle input change
                 />
-                <div className="row mt-4 mb-2" style={{ width: '100%' }}>
+                <div className='row mt-2'>
+
+                    {
+                        category === 'KeepTradeCut' || category === 'DynastyProcess' ? null :
+                            <div className="col-auto my-3">
+
+                                {category === 'DynastyProcess' ? null : <h2>Superflex <span><label class={`${style.switch}`}>
+                                    <input type="checkbox" onClick={() => { setIsSuperflexChecked(!isSuperflexChecked); return handleSuperflexChange; }} />
+                                    <span class={`${style.slider} ${style.round}`}></span>
+                                </label></span></h2>}
+                            </div>
+                    }
+                </div>
+                <div className="row mb-2" style={{ width: '100%' }}>
                     <div className="col-auto my-3">
                         <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/dynasty-ranking')}
                             className={category === 'dynasty-ranking' ? style.positionButtonSelected : style.positionButton}
                         >
-                            DYNASTY RANKINGS
-                        </button>
-                    </div>
-                    <div className="col-auto my-3">
-                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/dynasty-rookie-ranking')}
-                            className={category === 'dynasty-rookie-ranking' ? style.positionButtonSelected : style.positionButton}
-                        >
-                            DYNASTY ROOKIE RANKINGS
-                        </button>
-                    </div>
-                    <div className="col-auto my-3">
-                        <button style={{ width: 'auto' }} onClick={() => navigate('/ranking/redraft-ranking')}
-                            className={category === 'redraft-ranking' ? style.positionButtonSelected : style.positionButton}
-                        >
-                            REDRAFT RANKINGS
+                            Fantasy Calc
                         </button>
                     </div>
                     <div className="col-auto my-3">
@@ -117,7 +123,7 @@ function Ranking() {
                         </button>
                     </div>
                     <div className="col-auto my-3">
-                        <button style={{ width: 'auto' }} onClick={() => {navigate('/ranking/DynastyProcess'); setIsSuperflexChecked(false)}}
+                        <button style={{ width: 'auto' }} onClick={() => { navigate('/ranking/DynastyProcess'); setIsSuperflexChecked(false) }}
                             className={category === 'DynastyProcess' ? style.positionButtonSelected : style.positionButton}
                         >
                             Dynasty Process
@@ -183,20 +189,51 @@ function Ranking() {
                         </button>
                     </div>
                     {
-                        category === 'KeepTradeCut' || category === 'DynastyProcess' ? null :
-                            <div className="col-auto my-3">
-                                <p className={style.positionButton} style={{ width: 'auto', border: 'solid transparent 2px' }}>
-                                    SUPERFLEX
-                                    <span className='pl-2'>
-                                        <input
-                                            onChange={handleSuperflexChange}
-                                            type="checkbox"
-                                            checked={isSuperflexChecked}
-                                        />
-                                    </span>
-                                </p>
-                            </div>
+                        category === 'dynasty-ranking' || category === 'dynasty-rookie-ranking' || category === 'redraft-ranking' ? <div className="col-auto my-3">
+                            <button
+                                style={{ width: 'auto' }}
+                                className={category === 'dynasty-rookie-ranking' ? style.positionButtonSelected : style.positionButton}
+                                onClick={() => {
+                                    navigate('/ranking/dynasty-rookie-ranking')
+                                    setWhichButtonClicked('');
+                                }}
+                            >
+                                ROOKIE
+                            </button>
+                        </div> : null
                     }
+                    {
+                        category === 'dynasty-ranking' || category === 'dynasty-rookie-ranking' || category === 'redraft-ranking' ? <div className="col-auto my-3">
+                            <button
+                                style={{ width: 'auto' }}
+                                className={category === 'dynasty-ranking' ? style.positionButtonSelected : style.positionButton}
+                                onClick={() => {
+                                    navigate('/ranking/dynasty-ranking')
+                                    setWhichButtonClicked('');
+                                }}
+                            >
+                                DYNASTY
+                            </button>
+                        </div> : null
+                    }
+
+{
+                        category === 'dynasty-ranking' || category === 'dynasty-rookie-ranking' || category === 'redraft-ranking' ? <div className="col-auto my-3">
+                            <button
+                                style={{ width: 'auto' }}
+                                className={category === 'redraft-ranking' ? style.positionButtonSelected : style.positionButton}
+                                onClick={() => {
+                                    navigate('/ranking/redraft-ranking')
+                                    setWhichButtonClicked('');
+                                }}
+                            >
+                                REDRAFT
+                            </button>
+                        </div> : null
+                    }
+
+
+
 
                 </div>
 
@@ -205,27 +242,27 @@ function Ranking() {
                     <table className={`table ${style.rankingTable}`}>
                         <thead>
                             <tr>
-                                <th scope="col">{category === 'KeepTradeCut' || category === 'DynastyProcess' ? 'SERIAL NO.' : 'RANK'}</th>
-                                <th scope="col">NAME</th>
+                                <th style={{ borderInline: 'none', borderBottom: 'none' }} scope="col">{category === 'KeepTradeCut' || category === 'DynastyProcess' ? 'SERIAL NO.' : 'RANK'}</th>
+                                <th style={{ borderInline: 'none', borderBottom: 'none' }} scope="col">NAME</th>
                                 {
                                     category === 'DynastyProcess' ? null :
                                         <>
-                                            <th scope="col">TEAM</th>
-                                            <th scope="col">POSITION</th>
+                                            <th style={{ borderInline: 'none', borderBottom: 'none' }} scope="col">TEAM</th>
+                                            <th style={{ borderInline: 'none', borderBottom: 'none' }} scope="col">POSITION</th>
                                         </>
                                 }
                                 {
                                     category === 'DynastyProcess' ? null :
-                                        <th scope="col">AGE</th>
+                                        <th style={{ borderInline: 'none', borderBottom: 'none' }} scope="col">AGE</th>
                                 }
 
                                 {
                                     category === 'KeepTradeCut' ?
-                                        <th scope="col">30 DAYS TREND</th> : null
+                                        <th style={{ borderInline: 'none', borderBottom: 'none' }} scope="col">30 DAYS TREND</th> : null
                                 }
-                                <th scope="col">VALUE</th>
+                                <th scope="col" style={{ borderInline: 'none', borderBottom: 'none' }}>VALUE</th>
                                 {
-                                    category === 'KeepTradeCut' ? <th scope="col">SUPERFLEX VALUE</th> : null
+                                    category === 'KeepTradeCut' ? <th scope="col" style={{ borderInline: 'none', borderBottom: 'none' }}>SUPERFLEX VALUE</th> : null
                                 }
 
 
@@ -233,46 +270,54 @@ function Ranking() {
                         </thead>
                         <tbody>
                             {loading ? (
-                                <tr><td colSpan={6}>LOADING...</td></tr>
+                                <tr><td style={{ borderInline: 'none' }} colSpan={6}>LOADING...</td></tr>
                             ) : (
                                 (filterDataState || data || []).map((value, index) => (
                                     <tr key={value.id || index}>
-                                        <td>{value.rank || index + 1}</td>
-                                        <td>{value.name}</td>
+                                        <td style={{ borderInline: 'none' }}>{value.rank || index + 1}</td>
+                                        <td style={{ borderInline: 'none' }}>{value.name}</td>
                                         {
                                             category === 'DynastyProcess' ? null :
                                                 <>
-                                                    <td>{value.team}</td>
-                                                    <td>{value.position}</td>
+                                                    <td style={{ color: 'green', borderInline: 'none' }}>{value.team}</td>
+                                                    <td style={{
+                                                        color: value.position === 'QB' ? 'orange' :
+                                                            value.position === 'WR' ? 'red' :
+                                                                value.position === 'RB' ? 'blue' :
+                                                                    value.position === 'TE' ? 'yellow' :
+                                                                        'white', borderInline: 'none'
+                                                    }}>
+                                                        {value.position}
+                                                    </td>
                                                 </>
                                         }
                                         {
                                             category === 'DynastyProcess' ? null :
-                                                <td>{category === 'KeepTradeCut' ? value.age : value.maybeAge}</td>
+                                                <td style={{ borderInline: 'none' }}>{category === 'KeepTradeCut' ? value.age : value.maybeAge}</td>
                                         }
                                         {
                                             category === 'KeepTradeCut' ? (
                                                 value.trend && value.trend.includes('green:') ? (
-                                                    <td style={{ color: 'green' }}>
+                                                    <td style={{ color: 'green', borderInline: 'none' }}>
                                                         <i className="fa-solid fa-caret-up"></i>{' '}
                                                         {value.trend.replace('green:', '')}
                                                     </td>
                                                 ) : value.trend && value.trend.includes('red:') ? (
-                                                    <td style={{ color: 'red' }}>
+                                                    <td style={{ color: 'red', borderInline: 'none' }}>
                                                         <i className="fa-solid fa-caret-down"></i>{' '}
                                                         {value.trend.replace('red:', '')}
                                                     </td>
                                                 ) : (
-                                                    <td>--</td> // Placeholder for missing trend data
+                                                    <td style={{ borderInline: 'none' }}>--</td> // Placeholder for missing trend data
                                                 )
                                             ) : null
-                                            
+
                                         }
 
-                                        {isSuperflexChecked ? <td>{value.superflexValue}</td> : <td>{value.value}</td>}
+                                        {isSuperflexChecked ? <td style={{ borderInline: 'none' }}>{value.superflexValue}</td> : <td style={{ borderInline: 'none' }}>{value.value}</td>}
                                         {/* <td>{value.value}</td> */}
                                         {
-                                            category === 'KeepTradeCut' ? <td>{value.superflexValue}</td> : null
+                                            category === 'KeepTradeCut' ? <td style={{ borderInline: 'none' }}>{value.superflexValue}</td> : null
                                         }
                                     </tr>
                                 ))

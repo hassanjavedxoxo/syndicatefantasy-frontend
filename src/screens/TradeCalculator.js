@@ -138,36 +138,36 @@ function TradeCalculator() {
         setTeamTwoData([]);
         setTeamOnePlayerValue(0);
         setTeamTwoPlayerValue(0);
-        if(category === 'DynastyRanking' && isSuperflex) {
+        if (category === 'DynastyRanking' && isSuperflex) {
             setLoading(true)
             axios.get(`http://46.202.178.195:5000/api/dynasty-ranking/superflex`)
-            .then((response) => {
-                setData(response.data);
-            }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                setLoading(false);
-            })
-        } else if(category === 'DynastyRookieRanking' && isSuperflex) {
+                .then((response) => {
+                    setData(response.data);
+                }).catch((err) => {
+                    console.log(err);
+                }).finally(() => {
+                    setLoading(false);
+                })
+        } else if (category === 'DynastyRookieRanking' && isSuperflex) {
             setLoading(true)
             axios.get(`http://46.202.178.195:5000/api/dynasty-rookie-ranking/superflex`)
-            .then((response) => {
-                setData(response.data);
-            }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                setLoading(false);
-            })
-        } else if(category === 'RedraftRanking' && isSuperflex) {
+                .then((response) => {
+                    setData(response.data);
+                }).catch((err) => {
+                    console.log(err);
+                }).finally(() => {
+                    setLoading(false);
+                })
+        } else if (category === 'RedraftRanking' && isSuperflex) {
             setLoading(true)
             axios.get(`http://46.202.178.195:5000/api/redraft-ranking/superflex`)
-            .then((response) => {
-                setData(response.data);
-            }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                setLoading(false);
-            })
+                .then((response) => {
+                    setData(response.data);
+                }).catch((err) => {
+                    console.log(err);
+                }).finally(() => {
+                    setLoading(false);
+                })
         }
     }, [isSuperflex]);
 
@@ -195,18 +195,18 @@ function TradeCalculator() {
     };
     const calculateRecommendations = () => {
         const valueDifference = teamOnePlayerValue - teamTwoPlayerValue;
-    
+
         if (Math.abs(valueDifference) > 200) {
             const playersForTeamTwo = data.filter(player => {
                 const playerValue = isSuperflex ? player.superflexValue : player.value;
                 return playerValue >= Math.abs(valueDifference) - 200 && playerValue <= Math.abs(valueDifference) + 200;
             });
-    
+
             const playersForTeamOne = data.filter(player => {
                 const playerValue = isSuperflex ? player.superflexValue : player.value;
                 return playerValue <= Math.abs(valueDifference) + 200 && playerValue >= Math.abs(valueDifference) - 200;
             });
-    
+
             if (valueDifference > 200) {
                 // Team 2 needs more value
                 setRecommendedPlayers(playersForTeamTwo);
@@ -218,12 +218,12 @@ function TradeCalculator() {
             setRecommendedPlayers([]); // Reset if the trade is already fair
         }
     };
-    
+
 
     useEffect(() => {
         calculateRecommendations();
     }, [teamOnePlayerValue, teamTwoPlayerValue, isSuperflex]);
-    
+
 
     return (
         <>
@@ -271,44 +271,44 @@ function TradeCalculator() {
                                 {
                                     teamOneData.map((value, index) => (
                                         <p
-  className='pl-3'
-  key={index}
-  style={{
-    background: 'rgb(16, 239, 16)',
-    position: 'relative',
-    color: 'black',
-    width: '70%',
-    borderRadius: '5px',
-    height: '30px',
-    alignItems: 'center',
-    display: 'flex',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    paddingRight: '60px', // Add padding to prevent overlap with the button
-    whiteSpace: 'nowrap', // Prevent text wrapping
-    overflow: 'hidden', // Hide overflow
-    textOverflow: 'ellipsis', // Show ellipsis for overflowing text
-  }}
->
-  {value.name} - {isSuperflex ? value.superflexValue : value.value}
-  <button
-    style={{
-      position: 'absolute',
-      right: '0',
-      height: '100%',
-      border: 'none',
-      background: 'red',
-      color: 'white',
-      borderTopRightRadius: '5px',
-      borderBottomRightRadius: '5px',
-      width: '60px', // Fixed width for the button
-    }}
-    className={`${style.removeButton}`}
-    onClick={() => removeFromTeamOne(value)}
-  >
-    <i class="fa-solid fa-trash"></i>
-  </button>
-</p>
+                                            className='pl-3'
+                                            key={index}
+                                            style={{
+                                                background: 'rgb(16, 239, 16)',
+                                                position: 'relative',
+                                                color: 'black',
+                                                width: '70%',
+                                                borderRadius: '5px',
+                                                height: '30px',
+                                                alignItems: 'center',
+                                                display: 'flex',
+                                                left: '50%',
+                                                transform: 'translateX(-50%)',
+                                                paddingRight: '60px', // Add padding to prevent overlap with the button
+                                                whiteSpace: 'nowrap', // Prevent text wrapping
+                                                overflow: 'hidden', // Hide overflow
+                                                textOverflow: 'ellipsis', // Show ellipsis for overflowing text
+                                            }}
+                                        >
+                                            {value.name} - {isSuperflex ? value.superflexValue : value.value}
+                                            <button
+                                                style={{
+                                                    position: 'absolute',
+                                                    right: '0',
+                                                    height: '100%',
+                                                    border: 'none',
+                                                    background: 'red',
+                                                    color: 'white',
+                                                    borderTopRightRadius: '5px',
+                                                    borderBottomRightRadius: '5px',
+                                                    width: '60px', // Fixed width for the button
+                                                }}
+                                                className={`${style.removeButton}`}
+                                                onClick={() => removeFromTeamOne(value)}
+                                            >
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </p>
 
                                     ))
                                 }
@@ -330,7 +330,7 @@ function TradeCalculator() {
                             <div>
                                 {team2FilteredData.length > 0 && team2FilteredData.map((player, index) => (
                                     <button
-                                    
+
                                         key={index}
                                         className={style.playerNames}
                                         onClick={() => addToTeamTwo(player)}
@@ -342,12 +342,25 @@ function TradeCalculator() {
                             <div className={style.teamTwoCont}>
                                 {
                                     teamTwoData.map((value, index) => (
-                                        <p key={index} className='pl-3' style={{background:'rgb(16, 239, 16)', position:'relative', color:'black', width:'70%', borderRadius:'5px', height:'30px', alignItems:'center', display:'flex', left:'50%', transform:'translateX(-50%)'}}>
+                                        <p key={index} className='pl-3' style={{ background: 'rgb(16, 239, 16)', position: 'relative', color: 'black', width: '70%', borderRadius: '5px', height: '30px', alignItems: 'center', display: 'flex', left: '50%', transform: 'translateX(-50%)' }}>
                                             {value.name} - {isSuperflex ? value.superflexValue : value.value}
-                                            <button 
-                                            style={{position:'absolute', right:'0', height:'100%', border:'none', background:'red', color:'white', borderTopRightRadius:'5px', borderBottomRightRadius:'5px'}}
-                                                className={`${style.removeButton}`} 
-                                                onClick={() => removeFromTeamTwo(value)}>REMOVE</button>
+                                            <button
+                                                style={{
+                                                    position: 'absolute',
+                                                    right: '0',
+                                                    height: '100%',
+                                                    border: 'none',
+                                                    background: 'red',
+                                                    color: 'white',
+                                                    borderTopRightRadius: '5px',
+                                                    borderBottomRightRadius: '5px',
+                                                    width: '60px', // Fixed width for the button
+                                                }}
+                                                className={`${style.removeButton}`}
+                                                onClick={() => removeFromTeamTwo(value)}
+                                            >
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
                                         </p>
                                     ))
                                 }
@@ -391,42 +404,42 @@ function TradeCalculator() {
 
                 }
 
-<div className={`container mt-4 ${style.recommendationBox}`}>
-    <h3 className='text-center'>Recommendations to Balance Trade</h3>
-    {recommendedPlayers.length > 0 ? (
-        <table>
-                        <tbody>
-            {recommendedPlayers.map((player, index) => {
-                const localValueDifference = teamOnePlayerValue - teamTwoPlayerValue;
-                return (
+                <div className={`container mt-4 ${style.recommendationBox}`}>
+                    <h3 className='text-center'>Recommendations to Balance Trade</h3>
+                    {recommendedPlayers.length > 0 ? (
+                        <table>
+                            <tbody>
+                                {recommendedPlayers.map((player, index) => {
+                                    const localValueDifference = teamOnePlayerValue - teamTwoPlayerValue;
+                                    return (
 
-                    
-                            <tr>
-                                <td>{player.name} - {isSuperflex ? player.superflexValue : player.value}</td>
-                                <td><button
-                            onClick={() =>
-                                localValueDifference > 200
-                                    ? addToTeamTwo(player)
-                                    : addToTeamOne(player)
-                            }
-                            className="btn btn-primary ml-2"
-                        >
-                            Add
-                        </button></td>
-                            </tr>
-                    
-                    
-                        
-                        
-                    
-                );
-            })}
-            </tbody>
-            </table>
-    ) : (
-        <p className='text-center'>No recommendations available. The trade is fair.</p>
-    )}
-</div>
+
+                                        <tr>
+                                            <td>{player.name} - {isSuperflex ? player.superflexValue : player.value}</td>
+                                            <td><button
+                                                onClick={() =>
+                                                    localValueDifference > 200
+                                                        ? addToTeamTwo(player)
+                                                        : addToTeamOne(player)
+                                                }
+                                                className="btn btn-primary ml-2"
+                                            >
+                                                Add
+                                            </button></td>
+                                        </tr>
+
+
+
+
+
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    ) : (
+                        <p className='text-center'>No recommendations available. The trade is fair.</p>
+                    )}
+                </div>
 
                 <p className={`text-center mt-4 ${style.tradeInfo}`}>The Trade Calculator is your go-to tool when you are wondering about trades and need some help. It’s designed to give you a clear picture of the fairness of potential trades, helping you make decisions with confidence.</p>
                 <p className={`text-center ${style.tradeInfo}`}>Here’s the magic behind it: Each player gets a numerical value based on their performance, position, age, and other relevant stats. These values are then adjusted using a special formula based on position, player value, and other factors to consider fairness. The calculator adds up the adjusted values of all players for each team to get a total value. Using the adjusted values, the trade will be considered fair if the two teams are within a 10% absolute point threshold of each other. The points will tell you which team is favored in the trade, but this is simply a way to guide you. </p>
